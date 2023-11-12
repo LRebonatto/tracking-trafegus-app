@@ -36,7 +36,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertModuleName('application');
         $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
         $this->assertControllerClass('IndexController');
-        $this->assertMatchedRouteName('home');
+        $this->assertMatchedRouteName('/home');
     }
 
     public function testIndexActionViewModelTemplateRenderedWithinLayout()
