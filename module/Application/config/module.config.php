@@ -57,4 +57,17 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+//    'doctrine' => [
+//        'connection' => [
+//            'orm_default' => [
+//                'driverClass' => 'Doctrine\DBAL\Driver\PDOPgSql\Driver',
+//                'params' => [
+//                    'host'     => 'localhost',
+//                    'user'     => 'postgres',
+//                    'password' => 'postgres',
+//                    'dbname'   => 'trafegus',
+//                ],
+//            ],
+//        ],
+//    ],
 ];
