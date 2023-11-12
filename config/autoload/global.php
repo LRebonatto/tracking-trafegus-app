@@ -11,6 +11,21 @@
  * file.
  */
 
+use Doctrine\DBAL\Driver\PDO\PgSQL\Driver;
+
 return [
-    // ...
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => Driver::class,
+                'params' => [
+                    'host'     => 'localhost',
+                    'port'     => '5432',
+                    'user'     => 'postgres',
+                    'password' => 'postgres',
+                    'dbname'   => 'trafegus',
+                ],
+            ],
+        ],
+    ],
 ];

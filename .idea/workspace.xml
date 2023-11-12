@@ -4,26 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b6cd3c6-34a7-454f-98ca-f20d7312f91a" name="Changes" comment="First commit. Fresh Zend Skeleton base.">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/config/module.config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/src/Controller/IndexController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/src/Controller/VehicleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/src/Entity/Vehicle.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/src/Module.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/add.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/delete.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/edit.phtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/index.phtml" afterDir="false" />
+    <list default="true" id="0b6cd3c6-34a7-454f-98ca-f20d7312f91a" name="Changes" comment="Include Vehicle module and Doctrine ORM.">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB-schema-generate.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/tracking-trafegus-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tracking-trafegus-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/autoload/global.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/autoload/global.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/modules.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/modules.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/Application/config/module.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/module/Application/config/module.config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/module/Application/view/application/index/index-zf2.phtml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/module/Application/view/layout/layout.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/module/Application/view/layout/layout.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/config/module.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/module/Vehicle/config/module.config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/src/Controller/IndexController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/src/Controller/VehicleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/module/Vehicle/src/Controller/VehicleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/src/Entity/Vehicle.php" beforeDir="false" afterPath="$PROJECT_DIR$/module/Vehicle/src/Entity/Vehicle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/src/Module.php" beforeDir="false" afterPath="$PROJECT_DIR$/module/Vehicle/src/Module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/module/Vehicle/view/vehicle/vehicle/index.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,9 +75,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
@@ -87,6 +83,18 @@
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-orm-module" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-module" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-inputfilter" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-filter" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-cache" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-hydrator" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-paginator" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-authentication" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-form" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -120,8 +128,13 @@
     "ruby.rails.projectView.checked": "true",
     "ruby.structure.view.model.defaults.configured": "true",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "Symfony2.SettingsForm",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -148,7 +161,8 @@
       <updated>1699643482241</updated>
       <workItem from="1699643483547" duration="1126000" />
       <workItem from="1699644782094" duration="6537000" />
-      <workItem from="1699742107611" duration="8346000" />
+      <workItem from="1699742107611" duration="14489000" />
+      <workItem from="1699756663428" duration="4427000" />
     </task>
     <task id="LOCAL-00001" summary="First commit. Fresh Zend Skeleton base.">
       <option name="closed" value="true" />
@@ -158,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699645547379</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Include Vehicle module and Doctrine ORM.">
+      <option name="closed" value="true" />
+      <created>1699750935427</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699750935427</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +199,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit. Fresh Zend Skeleton base." />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit. Fresh Zend Skeleton base." />
+    <MESSAGE value="Include Vehicle module and Doctrine ORM." />
+    <option name="LAST_COMMIT_MESSAGE" value="Include Vehicle module and Doctrine ORM." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

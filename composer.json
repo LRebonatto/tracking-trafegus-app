@@ -14,6 +14,8 @@
         "zendframework/zend-component-installer": "^1.0 || ^2.1",
         "zendframework/zend-mvc": "^3.1.1",
         "doctrine/orm": "^2.1.3",
+        "doctrine/doctrine-orm-module": "2.1.7",
+        "doctrine/doctrine-module": "^2.1.3",
         "zfcampus/zf-development-mode": "^3.2"
     },
     "autoload": {
@@ -24,7 +26,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "VehicleTest\\": "module/Vehicle/test/"
         }
     },
     "scripts": {
