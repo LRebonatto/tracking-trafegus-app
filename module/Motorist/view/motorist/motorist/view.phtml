@@ -11,42 +11,48 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="m-0">Editar Motorista</h2>
-                    <a href="<?= $this->url('motorists', ['action' => 'delete']); ?>"
-                       class="btn btn-danger">
-                        Excluir Motorista <i class="fa fa-trash"></i>
-                    </a>
+                    <div>
+                        <a href="<?= $this->url('motorists', ['action' => 'edit', 'id' => $motorist->getId()]); ?>"
+                           class="btn btn-warning">
+                            Editar Motorista <i class="fa fa-pencil"></i>
+                        </a>
+                        <a href="<?= $this->url('motorists', ['action' => 'delete']); ?>"
+                           class="btn btn-danger">
+                            Excluir Motorista <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="formCadastro">
+                    <form>
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Nome</label>
-                                <input type="text" class="form-control" id="nome" name="nome"
+                                <input disabled type="text" class="form-control" id="nome" name="nome"
                                        value="<?= $motorist->getNome() ?>"
                                        required
                                        maxlength="200">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="rg">RG:</label>
-                                <input type="text" class="form-control rg" id="rg" name="rg"
+                                <input disabled type="text" class="form-control rg" id="rg" name="rg"
                                        value="<?= $motorist->getRg() ?>"
                                        maxlength="20" required>
                             </div>
                             <div class="col-auto py-2">
                                 <label for="cpf">CPF:</label>
-                                <input type="text" class="form-control cpf" id="cpf" name="cpf"
+                                <input disabled type="text" class="form-control cpf" id="cpf" name="cpf"
                                        value="<?= $motorist->getCpf() ?>"
                                        maxlength="15" required>
                             </div>
                             <div class="col-auto py-2">
                                 <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control telefone" id="telefone" name="telefone"
+                                <input disabled type="text" class="form-control telefone" id="telefone" name="telefone"
                                        value="<?= $motorist->getTelefone() ?>"
                                        maxlength="20">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="vehicle_id">Veiculo:</label>
-                                <select class="form-control" id="vehicle_id" name="vehicle_id">
+                                <select disabled class="form-control" id="vehicle_id" name="vehicle_id">
                                     <option value="">Selecione</option>
                                     <?php foreach ($vehicles as $vehicle): ?>
                                         <option value="<?= $vehicle->getId() ?>"
@@ -57,10 +63,16 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="saveButton" disabled>Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasSuccessMessages()) {
+    $successMessage = $flashMessenger->getSuccessMessages()[0];
+    echo '<div class="alert alert-success">' . $this->escapeHtml($successMessage) . '</div>';
+}
+?>

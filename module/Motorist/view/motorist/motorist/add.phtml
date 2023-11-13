@@ -1,7 +1,7 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-12">
-            <a href="<?= $this->url('vehicles') ?>" class="btn btn-primary mb-3">
+            <a href="<?= $this->url('motorists') ?>" class="btn btn-primary mb-3">
                 <i class="fa fa-arrow-left"></i> Voltar
             </a>
         </div>
@@ -10,74 +10,43 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h2 class="m-0">Adicionar Veículo</h2>
+                    <h2 class="m-0">Adicionar Motorista</h2>
                 </div>
                 <div class="card-body">
-                    <form action="<?= $this->url('vehicles', ['action' => 'add']) ?>" method="post" id="formCadastro">
+                    <form action="<?= $this->url('motorists', ['action' => 'add']) ?>" method="post" id="formCadastro">
                         <div class="form-group row">
                             <div class="col-auto py-2">
-                                <label for="id">Id:</label>
-                                <input type="number" class="form-control" id="id" name="id"
-                                       required>
+                                <label for="nome">Nome:</label>
+                                <input type="text" class="form-control" id="nome" name="nome" required maxlength="200">
                             </div>
                             <div class="col-auto py-2">
-                                <label for="placa">Placa:</label>
-                                <input type="text" class="form-control" id="placa" name="placa"
-
-                                       required
-                                       maxlength="7">
+                                <label for="rg">RG:</label>
+                                <input type="text" class="form-control rg" id="rg" name="rg" maxlength="20" required>
                             </div>
                             <div class="col-auto py-2">
-                                <label for="renavam">Renavam:</label>
-                                <input type="text" class="form-control" id="renavam" name="renavam" maxlength="30">
+                                <label for="cpf">CPF:</label>
+                                <input type="text" class="form-control cpf" id="cpf" name="cpf" maxlength="15" required>
                             </div>
                             <div class="col-auto py-2">
-                                <label for="modelo">Modelo:</label>
-                                <input type="text" class="form-control" id="modelo" name="modelo" required
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control telefone" id="telefone" name="telefone"
                                        maxlength="20">
                             </div>
                             <div class="col-auto py-2">
-                                <label for="marca">Marca:</label>
-                                <input type="text" class="form-control" id="marca" name="marca" required maxlength="20">
-                            </div>
-                            <div class="col-auto py-2">
-                                <label for="ano">Ano:</label>
-                                <input type="number" class="form-control" id="ano" name="ano" required>
-                            </div>
-                            <div class="col-auto py-2">
-                                <label for="cor">Cor:</label>
-                                <input type="text" class="form-control" id="cor" name="cor" required maxlength="20">
+                                <label for="vehicle_id">Veiculo:</label>
+                                <select class="form-control" id="vehicle_id" name="vehicle_id">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($vehicles as $vehicle): ?>
+                                        <option value="<?= $vehicle->getId() ?>"><?= $vehicle->getPlaca() ?>
+                                            • <?= $vehicle->getModelo() ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="addButton" disabled>Adicionar</button>
+                        <button type="submit" class="btn btn-success" id="saveButton" disabled>Adicionar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php
-$flashMessenger = $this->flashMessenger();
-if ($flashMessenger->hasSuccessMessages()) {
-    $successMessage = $flashMessenger->getSuccessMessages()[0];
-    echo '<div class="alert alert-success">1' . $this->escapeHtml($successMessage) . '</div>';
-}
-?>
-
-<script>
-    const form = document.getElementById('formCadastro');
-    const submitButton = document.getElementById('addButton');
-
-    form.addEventListener('input', function() {
-        const inputs = form.querySelectorAll('input[required]');
-        let allValid = true;
-
-        inputs.forEach(input => {
-            if (!input.value) {
-                allValid = false;
-            }
-        });
-
-        submitButton.disabled = !allValid;
-    });
-</script>

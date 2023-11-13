@@ -17,7 +17,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="<?= $this->url('vehicles', ['action' => 'view', 'id' => $vehicle->getId()]) ?>" method="post">
+                    <form method="post" id="formCadastro">
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Placa:</label>
@@ -56,7 +56,7 @@
                                        maxlength="20">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="saveRegister">Salvar</button>
+                        <button type="submit" class="btn btn-success" id="saveButton" disabled>Salvar</button>
                     </form>
                 </div>
             </div>

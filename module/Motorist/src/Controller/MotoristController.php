@@ -5,6 +5,7 @@ namespace Motorist\Controller;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Motorist\Entity\Motorist;
+use Vehicle\Entity\Vehicle;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -35,17 +36,21 @@ class MotoristController extends AbstractActionController
 
             $motorist = new Motorist();
             $motorist->setNome($data['nome']);
-            $motorist->setRg($data['rg']);
-            $motorist->setCpf($data['cpf']);
-            $motorist->setTelefone($data['telefone']);
+            $motorist->setRg(preg_replace('/\D/', '', $data['rg']));
+            $motorist->setCpf(preg_replace('/\D/', '', $data['cpf']));
+            $motorist->setTelefone(preg_replace('/\D/', '', $data['telefone']));
+            $motorist->setVehicleId($data['vehicle_id']);
 
             $this->entityManager->persist($motorist);
             $this->entityManager->flush();
 
             // Redirecionar para a página de listagem de veículos
             return $this->redirect()->toRoute('motorists');
-
         }
+
+        // Passar os veiculos para view
+        $vehicles = $this->entityManager->getRepository(Vehicle::class)->findAll();
+        return new ViewModel(['vehicles' => $vehicles]);
     }
 
     public function editAction()
@@ -58,7 +63,7 @@ class MotoristController extends AbstractActionController
         }
 
         try {
-            // Busca o veículo pelo ID
+            // Busca pelo ID
             $motorist = $this->entityManager->getRepository(Motorist::class)->find($id);
 
             if (!$motorist) {
@@ -74,20 +79,52 @@ class MotoristController extends AbstractActionController
                 $motorist->setRg($data['rg']);
                 $motorist->setCpf($data['cpf']);
                 $motorist->setTelefone($data['telefone']);
+                $motorist->setVehicleId($data['vehicle_id']);
 
                 // Persistir as mudanças
                 $this->entityManager->flush();
 
-                // Passar os dados do veículo para a view
-                return new ViewModel(['motorists' => $motorist]);
+                // se o registro foi alterado com sucesso, redireciona para a view action
+                return $this->redirect()->toRoute('motorists', ['action' => 'view', 'id' => $motorist->getId()]);
             }
 
+            // Passar os veiculos para view
+            $vehicles = $this->entityManager->getRepository(Vehicle::class)->findAll();
+            return new ViewModel(['motorist' => $motorist, 'vehicles' => $vehicles]);
 
         } catch (Exception $e) {
             // throw new \Exception('Could not edit. Error was thrown, details: ', $e->getMessage());
-            // Lidar com exceções, como registro não encontrado, erro de banco de dados, etc.
             return $this->redirect()->toRoute('motorists', ['action' => 'index']);
         }
+    }
+
+    public function viewAction()
+    {
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            // Lidar com a situação em que o ID não está presente
+            return $this->redirect()->toRoute('motorists', ['action' => 'index']);
+        }
+
+        try {
+            // Busca pelo ID
+            $motorist = $this->entityManager->getRepository(Motorist::class)->find($id);
+
+            if (!$motorist) {
+                // Lidar com a situação em que o motorista não foi encontrado
+                return $this->redirect()->toRoute('motorists', ['action' => 'index']);
+            }
+
+            // set flash success message
+            $this->flashMessenger()->addSuccessMessage("Cadastro alterado com sucesso.");
+            return new ViewModel(['motorist' => $motorist]);
+
+        } catch (Exception $e) {
+            // throw new \Exception('Could not edit. Error was thrown, details: ', $e->getMessage());
+            return $this->redirect()->toRoute('motorists', ['action' => 'index']);
+        }
+
     }
 
     public function deleteAction()

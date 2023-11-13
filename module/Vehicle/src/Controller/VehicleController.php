@@ -34,7 +34,6 @@ class VehicleController extends AbstractActionController
             $data = $this->params()->fromPost();
 
             $vehicle = new Vehicle();
-
             $vehicle->setPlaca($data['placa']);
             $vehicle->setRenavam($data['renavam']);
             $vehicle->setModelo($data['modelo']);
@@ -48,6 +47,8 @@ class VehicleController extends AbstractActionController
 
             return $this->redirect()->toRoute('vehicles');
         }
+
+        return new ViewModel();
     }
 
     public function editAction()
@@ -60,7 +61,7 @@ class VehicleController extends AbstractActionController
         }
 
         try {
-            // Busca o veículo pelo ID
+            // Busca pelo ID
             $vehicle = $this->entityManager->getRepository(Vehicle::class)->find($id);
 
             if (!$vehicle) {
@@ -81,6 +82,9 @@ class VehicleController extends AbstractActionController
 
                 // Persistir as mudanças
                 $this->entityManager->flush();
+
+                // se o registro foi alterado com sucesso, redireciona para a view action
+                return $this->redirect()->toRoute('vehicles', ['action' => 'view', 'id' => $vehicle->getId()]);
             }
 
             return new ViewModel(['vehicle' => $vehicle]);
@@ -89,7 +93,6 @@ class VehicleController extends AbstractActionController
             // throw new \Exception('Could not edit. Error was thrown, details: ', $e->getMessage());
             return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
         }
-
     }
 
     public function viewAction()

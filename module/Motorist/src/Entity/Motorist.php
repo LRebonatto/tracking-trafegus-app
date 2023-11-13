@@ -42,6 +42,7 @@ class Motorist
     /**
      * @ORM\ManyToOne(targetEntity="Vehicle\Entity\Vehicle")
      * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $vehicle_id;
 
@@ -52,6 +53,11 @@ class Motorist
         }
     }
 
+    /**
+     * Returns ID of this motorist.
+     *
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
@@ -107,10 +113,13 @@ class Motorist
         return $this->vehicle_id;
     }
 
-    public function setVehicle($vehicle_id)
+    public function setVehicleId($vehicle_id)
     {
         $this->vehicle_id = $vehicle_id;
     }
 
-
+    public function getVehicleModel()
+    {
+        return $this->vehicle_id->getModelo();
+    }
 }

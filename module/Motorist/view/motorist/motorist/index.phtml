@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="card-title m-0">Lista de Motoristas</h2>
-                    <a href="<?= $this->url('vehicles', ['action' => 'add']); ?>"
+                    <a href="<?= $this->url('motorists', ['action' => 'add']); ?>"
                        class="btn btn-primary">
                         Novo Motorista <i class="fa fa-plus"></i>
                     </a>
@@ -25,16 +25,15 @@
                         <!-- Loop para exibir os motoristas -->
                         <?php foreach ($this->motorists as $motorist) : ?>
                             <tr>
-                                <td><?= $motorist->getPlaca(); ?></td>
-                                <td><?= $motorist->getRenavam(); ?></td>
-                                <td><?= $motorist->getModelo(); ?></td>
-                                <td><?= $motorist->getMarca(); ?></td>
-                                <td><?= $motorist->getAno(); ?></td>
-                                <td><?= $motorist->getCor(); ?></td>
+                                <td><?= $motorist->getNome(); ?></td>
+                                <td class="rg"><?= $motorist->getRg(); ?></td>
+                                <td class="cpf"><?= $motorist->getCpf(); ?></td>
+                                <td class="telefone"><?= $motorist->getTelefone(); ?></td>
+                                <td><?= $motorist->getVehicleId(); ?></td>
                                 <td>
-                                    <a href="<?= $this->url('vehicles', ['action' => 'edit', 'id' => $motorist->getId()]); ?>"
+                                    <a href="<?= $this->url('motorists', ['action' => 'edit', 'id' => $motorist->getId()]); ?>"
                                        class="btn btn-sm btn-warning">Editar</a>
-                                    <a href="<?= $this->url('vehicles', ['action' => 'delete', 'id' => $motorist->getId()]); ?>"
+                                    <a href="<?= $this->url('motorists', ['action' => 'delete', 'id' => $motorist->getId()]); ?>"
                                        class="btn btn-sm btn-danger">Excluir</a>
                             </tr>
                         <?php endforeach; ?>
