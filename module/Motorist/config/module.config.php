@@ -28,10 +28,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\MotoristController::class => function ($container) {
-                $entityManager = $container->get(EntityManager::class);
-                return new Controller\MotoristController($entityManager);
-            },
+            Controller\MotoristController::class => Controller\Factory\MotoristControllerFactory::class,
         ],
     ],
     'view_manager' => [

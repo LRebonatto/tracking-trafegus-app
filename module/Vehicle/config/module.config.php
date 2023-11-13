@@ -2,7 +2,6 @@
 
 namespace Vehicle;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Zend\Router\Http\Segment;
 use Zend\View\Helper\FlashMessenger;
@@ -28,10 +27,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\VehicleController::class => function ($container) {
-                $entityManager = $container->get(EntityManager::class);
-                return new Controller\VehicleController($entityManager);
-            },
+            Controller\VehicleController::class => Controller\Factory\VehicleControllerFactory::class,
         ],
     ],
     'view_manager' => [
