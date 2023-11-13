@@ -53,13 +53,10 @@
                             <div class="col-auto py-2">
                                 <label for="vehicle_id">Veiculo:</label>
                                 <select disabled class="form-control" id="vehicle_id" name="vehicle_id">
-                                    <option value="">Selecione</option>
-                                    <?php foreach ($vehicles as $vehicle): ?>
-                                        <option value="<?= $vehicle->getId() ?>"
-                                            <?= $vehicle->getId() == $motorist->getVehicleId() ? 'selected' : '' ?>>
-                                            <?= $vehicle->getPlaca() ?> • <?= $vehicle->getModelo() ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                    <option value="<?= $vehicle->getId() ?>"
+                                        <?= $vehicle->getId() == $motorist->getVehicleId() ? 'selected' : '' ?>>
+                                        <?= $vehicle->getPlaca() ?> • <?= $vehicle->getModelo() ?>
+                                    </option>
                                 </select>
                             </div>
                         </div>

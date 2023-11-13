@@ -5,6 +5,7 @@ namespace Vehicle\Controller;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Vehicle\Entity\Vehicle;
+use Motorist\Entity\Motorist;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -126,6 +127,41 @@ class VehicleController extends AbstractActionController
 
     public function deleteAction()
     {
-        return new ViewModel();
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+        }
+
+        $vehicle = $this->entityManager->getRepository(Vehicle::class)->find($id);
+
+        if (!$vehicle) {
+            return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+        }
+
+        $motorist = $this->entityManager->getRepository(Motorist::class)->findBy(['vehicleId' => $vehicle->getId()]);
+
+        if ($this->getRequest()->isPost()) {
+            $confirm = $this->params()->fromPost('confirm');
+
+            if ($confirm === 'yes') {
+                if ($motorist) {
+                    // Exibir uma mensagem ou redirecionar para desvincular o veículo do motorista primeiro
+                    $this->flashMessenger()->addErrorMessage('Não é possível excluir o veículo, pois ele está vinculado a um motorista.');
+                    return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+                }
+
+                $this->entityManager->remove($vehicle);
+                $this->entityManager->flush();
+
+                // Set flash message
+                $this->flashMessenger()->addSuccessMessage('Veículo excluído com sucesso.');
+
+                return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+            }
+        }
+
+        return new ViewModel(['vehicle' => $vehicle, 'motorist' => $motorist]);
     }
+
 }

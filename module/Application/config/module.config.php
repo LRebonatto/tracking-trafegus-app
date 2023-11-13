@@ -34,6 +34,16 @@ return [
                     ],
                 ],
             ],
+            'map' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/map',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'map',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [

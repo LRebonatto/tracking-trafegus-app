@@ -24,12 +24,19 @@
                         <tbody>
                         <!-- Loop para exibir os motoristas -->
                         <?php foreach ($this->motorists as $motorist) : ?>
+                            <?php $vehicle = $this->vehicles[$motorist->getVehicleId()]; ?>
                             <tr>
                                 <td><?= $motorist->getNome(); ?></td>
                                 <td class="rg"><?= $motorist->getRg(); ?></td>
                                 <td class="cpf"><?= $motorist->getCpf(); ?></td>
                                 <td class="telefone"><?= $motorist->getTelefone(); ?></td>
-                                <td><?= $motorist->getVehicleId(); ?></td>
+                                <td>
+                                    <?php if ($vehicle) : ?>
+                                        <?= $vehicle->getPlaca() ?> • <?= $vehicle->getModelo() ?>
+                                    <?php else : ?>
+                                        Nenhum
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <a href="<?= $this->url('motorists', ['action' => 'edit', 'id' => $motorist->getId()]); ?>"
                                        class="btn btn-sm btn-warning">Editar</a>

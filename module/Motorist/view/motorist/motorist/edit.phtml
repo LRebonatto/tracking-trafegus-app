@@ -17,7 +17,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="formCadastro">
+                    <form method="post" id="formCadastro" action="<?= $this->url('motorists', ['action' => 'view', 'id' => $motorist->getId()]); ?>">
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Nome</label>

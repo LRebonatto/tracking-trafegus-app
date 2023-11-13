@@ -1,0 +1,25 @@
+<div class="container my-3">
+    <div class="row">
+        <div class="col-12">
+            <a href="<?= $this->url('motorists') ?>" class="btn btn-primary mb-3">
+                <i class="fa fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Excluir Motorista</h2>
+                </div>
+                <div class="card-body">
+                    <p>Você está prestes a excluir o motorista <strong><?= $motorist->getNome() ?></strong>. Tem certeza?</p>
+                    <form method="post">
+                        <input type="hidden" name="confirm" value="yes">
+                        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

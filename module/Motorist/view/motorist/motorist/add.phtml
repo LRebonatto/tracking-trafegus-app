@@ -35,7 +35,7 @@
                             <div class="col-auto py-2">
                                 <label for="vehicle_id">Veiculo:</label>
                                 <select class="form-control" id="vehicle_id" name="vehicle_id">
-                                    <option value="">Selecione</option>
+                                    <option value="null">Selecione</option>
                                     <?php foreach ($vehicles as $vehicle): ?>
                                         <option value="<?= $vehicle->getId() ?>"><?= $vehicle->getPlaca() ?>
                                             • <?= $vehicle->getModelo() ?></option>

@@ -29,7 +29,8 @@
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
-            "VehicleTest\\": "module/Vehicle/test/"
+            "VehicleTest\\": "module/Vehicle/test/",
+            "MotoristTest\\": "module/Motorist/test/"
         }
     },
     "scripts": {
