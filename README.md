@@ -1,14 +1,77 @@
-# ZendSkeletonApplication
+# Sistema de Gerenciamento de Motoristas e Veículos
 
-> ## Repository abandoned 2019-12-31
->
-> This repository has moved to laminas/laminas-skeleton-installer.
+## Descrição
+Um CRUD simples utilizando Zend Framework, Doctrine e jQuery para gerenciar Motoristas e Veículos.
 
-## Introduction
+## Telas
 
-This is a skeleton application using the Zend Framework MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with Zend Framework.
+1. **Listagem de Motoristas:**
+  - Apresenta uma tabela com todos os motoristas cadastrados exibindo Nome, RG, CPF, Telefone e Veículo associado.
+
+2. **Listagem de Veículos:**
+  - Exibe os veículos cadastrados com detalhes como Placa, Modelo, Ano, Cor, etc.
+
+3. **Adicionar Motorista:**
+  - Permite inserir um novo motorista com campos para Nome, RG, CPF, Telefone e associação com um Veículo.
+
+4. **Editar Motorista:**
+  - Permite editar os detalhes do motorista, incluindo associação com um Veículo.
+
+5. **Adicionar Veículo:**
+  - Permite inserir um novo veículo com campos como Placa, Modelo, Ano e Cor.
+
+6. **Editar Veículo:**
+  - Permite editar os detalhes de um veículo existente.
+
+7. **Excluir Motorista:**
+  - Permite excluir um motorista existente.
+
+8. **Excluir Veículo:**
+  - Permite excluir um veículo existente.
+
+9. **Mapa de Motoristas:**
+  - Exibe um mapa com a localização de motoristas (Dados fictícios).
+
+## Funcionalidades
+
+- Cadastro, edição e exclusão de Motoristas e Veículos.
+- Associação entre Motoristas e Veículos.
+- Interface amigável usando Zend Framework, Bootstrap e jQuery.
+
+## Tecnologias Utilizadas
+
+- Zend Framework
+- Doctrine ORM
+- jQuery
+- Bootstrap
+- PHP 7+
+- Banco de Dados (PostgreSQL)
+- Google Maps API
+
+## Como Utilizar
+
+1. **Requisitos**
+  - PHP instalado
+  - Configuração do banco de dados
+  - Zend Framework, Doctrine e jQuery importados no projeto.
+
+2. **Instalação e Execução**
+  - Clone o repositório.
+  - Configure o arquivo de conexão com o banco de dados.
+  - Execute o seguinte comando para criar as tabelas no banco de dados:
+```bash
+$ ./vendor/bin/doctrine-module orm:schema-tool:create
+```
+  - Execute o aplicativo na sua hospedagem ou servidor local.
+
+3. **Notas Importantes**
+  - Acesse a aplicação via navegador.
+  - Utilize as funcionalidades para gerenciar Motoristas e Veículos.
+  - Reporte problemas ou bugs através dos issues.
+
+
+
+---
 
 ## Installation using Composer
 
