@@ -11,13 +11,13 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="m-0">Editar Motorista</h2>
-                    <a href="<?= $this->url('motorists', ['action' => 'delete']); ?>"
+                    <a href="<?= $this->url('motorists', ['action' => 'delete', 'id' => $motorist->getId()]); ?>"
                        class="btn btn-danger">
                         Excluir Motorista <i class="fa fa-trash"></i>
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="formCadastro" action="<?= $this->url('motorists', ['action' => 'view', 'id' => $motorist->getId()]); ?>">
+                    <form method="post" id="formCadastro">
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Nome</label>

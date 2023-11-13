@@ -41,7 +41,7 @@ class MotoristController extends AbstractActionController
             $motorist->setCpf(preg_replace('/\D/', '', $data['cpf']));
             $motorist->setTelefone(preg_replace('/\D/', '', $data['telefone']));
             //vehicle id can be null
-            $motorist->setVehicleId($data['vehicle_id'] == '' ? null : $data['vehicle_id']);
+            $motorist->setVehicleId($data['vehicle_id'] == 0 ? null : (int) $data['vehicle_id']);
 
 
             $this->entityManager->persist($motorist);
@@ -79,13 +79,16 @@ class MotoristController extends AbstractActionController
                 $data = $this->params()->fromPost();
 
                 $motorist->setNome($data['nome']);
-                $motorist->setRg($data['rg']);
-                $motorist->setCpf($data['cpf']);
-                $motorist->setTelefone($data['telefone']);
-                $motorist->setVehicleId($data['vehicle_id']);
+                $motorist->setRg(preg_replace('/\D/', '', $data['rg']));
+                $motorist->setCpf(preg_replace('/\D/', '', $data['cpf']));
+                $motorist->setTelefone(preg_replace('/\D/', '', $data['telefone']));
+                $motorist->setVehicleId(($data['vehicle_id'] == '') ? null : (int) $data['vehicle_id']);
 
                 // Persistir as mudanças
                 $this->entityManager->flush();
+
+                // set flash message
+                $this->flashMessenger()->addSuccessMessage("Cadastro alterado com sucesso.");
 
                 // se o registro foi alterado com sucesso, redireciona para a view action
                 return $this->redirect()->toRoute('motorists', ['action' => 'view', 'id' => $motorist->getId()]);
@@ -96,8 +99,7 @@ class MotoristController extends AbstractActionController
             return new ViewModel(['motorist' => $motorist, 'vehicles' => $vehicles]);
 
         } catch (Exception $e) {
-            // throw new \Exception('Could not edit. Error was thrown, details: ', $e->getMessage());
-            return $this->redirect()->toRoute('motorists', ['action' => 'index']);
+            throw new \Exception('Houve um problema no formulário. Erro: ' . $e->getMessage(), 500);
         }
     }
 

@@ -84,6 +84,9 @@ class VehicleController extends AbstractActionController
                 // Persistir as mudanças
                 $this->entityManager->flush();
 
+                // set flash message
+                $this->flashMessenger()->addSuccessMessage("Cadastro alterado com sucesso.");
+
                 // se o registro foi alterado com sucesso, redireciona para a view action
                 return $this->redirect()->toRoute('vehicles', ['action' => 'view', 'id' => $vehicle->getId()]);
             }
@@ -91,8 +94,7 @@ class VehicleController extends AbstractActionController
             return new ViewModel(['vehicle' => $vehicle]);
 
         } catch (Exception $e) {
-            // throw new \Exception('Could not edit. Error was thrown, details: ', $e->getMessage());
-            return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+            throw new \Exception('Houve um problema no formulário. Erro: ' . $e->getMessage(), 500);
         }
     }
 
@@ -139,7 +141,7 @@ class VehicleController extends AbstractActionController
             return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
         }
 
-        $motorist = $this->entityManager->getRepository(Motorist::class)->findBy(['vehicleId' => $vehicle->getId()]);
+        $motorist = $this->entityManager->getRepository(Motorist::class)->findBy(['vehicle_id' => $vehicle->getId()]);
 
         if ($this->getRequest()->isPost()) {
             $confirm = $this->params()->fromPost('confirm');
@@ -148,7 +150,7 @@ class VehicleController extends AbstractActionController
                 if ($motorist) {
                     // Exibir uma mensagem ou redirecionar para desvincular o veículo do motorista primeiro
                     $this->flashMessenger()->addErrorMessage('Não é possível excluir o veículo, pois ele está vinculado a um motorista.');
-                    return $this->redirect()->toRoute('vehicles', ['action' => 'index']);
+                    return $this->redirect()->toRoute('vehicles', ['action' => 'delete', 'id' => $vehicle->getId()]);
                 }
 
                 $this->entityManager->remove($vehicle);

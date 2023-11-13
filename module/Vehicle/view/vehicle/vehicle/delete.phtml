@@ -1,0 +1,48 @@
+<div class="container my-3">
+    <div class="row">
+        <div class="col-12">
+            <a href="<?= $this->url('vehicles') ?>" class="btn btn-primary mb-3">
+                <i class="fa fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Excluir Veículo</h2>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Placa:</dt>
+                        <dd class="col-sm-9"><?= $vehicle->getPlaca(); ?></dd>
+                        <dt class="col-sm-3">Modelo:</dt>
+                        <dd class="col-sm-9"><?= $vehicle->getModelo(); ?></dd>
+                        <dt class="col-sm-3">Ano:</dt>
+                        <dd class="col-sm-9"><?= $vehicle->getAno(); ?></dd>
+                    </dl>
+                    <p>Você está prestes a excluir este veículo.<strong> Tem certeza?</p>
+                    <form method="post">
+                        <input type="hidden" name="confirm" value="yes">
+                        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--error message-->
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasErrorMessages()) :
+    foreach ($flashMessenger->getErrorMessages() as $message) :
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= $message; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+        </div>
+    <?php
+    endforeach;
+endif;
+?>

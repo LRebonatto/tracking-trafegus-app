@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="m-0">Editar Veículo</h2>
-                    <a href="<?= $this->url('vehicles', ['action' => 'delete']); ?>"
+                    <a href="<?= $this->url('vehicles', ['action' => 'delete', 'id' => $vehicle->getId()]); ?>"
                        class="btn btn-danger">
                         Excluir Veículo <i class="fa fa-trash"></i>
                     </a>

@@ -16,7 +16,7 @@
                            class="btn btn-warning">
                             Editar Motorista <i class="fa fa-pencil"></i>
                         </a>
-                        <a href="<?= $this->url('motorists', ['action' => 'delete']); ?>"
+                        <a href="<?= $this->url('motorists', ['action' => 'delete', 'id' => $motorist->getId()]); ?>"
                            class="btn btn-danger">
                             Excluir Motorista <i class="fa fa-trash"></i>
                         </a>
@@ -53,7 +53,7 @@
                             <div class="col-auto py-2">
                                 <label for="vehicle_id">Veiculo:</label>
                                 <select disabled class="form-control" id="vehicle_id" name="vehicle_id">
-                                    <option value="<?= $vehicle->getId() ?>"
+                                    <option value="<?= $this->vehicle->getId() ?>"
                                         <?= $vehicle->getId() == $motorist->getVehicleId() ? 'selected' : '' ?>>
                                         <?= $vehicle->getPlaca() ?> • <?= $vehicle->getModelo() ?>
                                     </option>

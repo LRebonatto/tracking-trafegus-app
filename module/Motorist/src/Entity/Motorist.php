@@ -43,7 +43,6 @@ class Motorist
      * @ORM\ManyToOne(targetEntity="Vehicle\Entity\Vehicle")
      * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
      * @ORM\Column(type="integer", nullable=true)
-     * @var Integer|null
      */
     protected $vehicle_id;
 
