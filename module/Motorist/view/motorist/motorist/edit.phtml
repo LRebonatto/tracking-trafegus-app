@@ -17,7 +17,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form action="<?= $this->url('vehicles', ['action' => 'view', 'id' => $vehicle->getId()]) ?>" method="post">
+                    <form action="<?= $this->url('vehicles', ['action' => 'edit', 'id' => $vehicle->getId()]) ?>" method="post">
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Placa:</label>
@@ -56,10 +56,18 @@
                                        maxlength="20">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="saveRegister">Salvar</button>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasSuccessMessages()) {
+    $successMessage = $flashMessenger->getSuccessMessages()[0];
+    echo '<div class="alert alert-success">1' . $this->escapeHtml($successMessage) . '</div>';
+}
+?>
+

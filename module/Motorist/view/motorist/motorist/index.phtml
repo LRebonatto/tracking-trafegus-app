@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row py-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h2 class="card-title m-0">Lista de Motoristas</h2>
+                    <a href="<?= $this->url('vehicles', ['action' => 'add']); ?>"
+                       class="btn btn-primary">
+                        Novo Motorista <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-striped" id="dtExclusive">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>RG</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Veiculo</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Loop para exibir os motoristas -->
+                        <?php foreach ($this->motorists as $motorist) : ?>
+                            <tr>
+                                <td><?= $motorist->getPlaca(); ?></td>
+                                <td><?= $motorist->getRenavam(); ?></td>
+                                <td><?= $motorist->getModelo(); ?></td>
+                                <td><?= $motorist->getMarca(); ?></td>
+                                <td><?= $motorist->getAno(); ?></td>
+                                <td><?= $motorist->getCor(); ?></td>
+                                <td>
+                                    <a href="<?= $this->url('vehicles', ['action' => 'edit', 'id' => $motorist->getId()]); ?>"
+                                       class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="<?= $this->url('vehicles', ['action' => 'delete', 'id' => $motorist->getId()]); ?>"
+                                       class="btn btn-sm btn-danger">Excluir</a>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,11 @@
                     <form action="<?= $this->url('vehicles', ['action' => 'add']) ?>" method="post" id="formCadastro">
                         <div class="form-group row">
                             <div class="col-auto py-2">
+                                <label for="id">Id:</label>
+                                <input type="number" class="form-control" id="id" name="id"
+                                       required>
+                            </div>
+                            <div class="col-auto py-2">
                                 <label for="placa">Placa:</label>
                                 <input type="text" class="form-control" id="placa" name="placa"
 
@@ -51,6 +56,13 @@
         </div>
     </div>
 </div>
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasSuccessMessages()) {
+    $successMessage = $flashMessenger->getSuccessMessages()[0];
+    echo '<div class="alert alert-success">1' . $this->escapeHtml($successMessage) . '</div>';
+}
+?>
 
 <script>
     const form = document.getElementById('formCadastro');

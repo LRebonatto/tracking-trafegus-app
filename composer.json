@@ -16,12 +16,14 @@
         "doctrine/orm": "^2.1.3",
         "doctrine/doctrine-orm-module": "2.1.7",
         "doctrine/doctrine-module": "^2.1.3",
-        "zfcampus/zf-development-mode": "^3.2"
+        "zfcampus/zf-development-mode": "^3.2",
+        "zendframework/zend-mvc-plugin-flashmessenger": "^1.2"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Vehicle\\": "module/Vehicle/src/"
+            "Vehicle\\": "module/Vehicle/src/",
+            "Motorist\\": "module/Motorist/src/"
         }
     },
     "autoload-dev": {

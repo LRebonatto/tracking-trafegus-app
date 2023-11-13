@@ -15,8 +15,7 @@ class Vehicle
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     * @var int
+     * @ORM\Column(type="integer", nullable=false)
      */
     protected $id;
 
@@ -50,28 +49,28 @@ class Vehicle
      */
     protected $cor;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="\Vehicle\Entity\Vehicle")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
-     */
-    protected $vehicle;
-
-    /**
-     * Returns associated vehicle.
-     * @return Vehicle
-     */
-    public function getVehicle()
+    public function __construct(array $data = [])
     {
-        return $this->vehicle;
+        if (!empty($data)) {
+            (new ClassMethods(false))->hydrate($data, $this);
+        }
     }
 
     /**
-     * Sets associated vehicle.
-     * @param Vehicle $vehicle
+     * Returns array of this vehicle.
+     * @return array
      */
-    public function setVehicle($vehicle)
+    public function getArrayCopy()
     {
-        $this->vehicle = $vehicle;
+        return [
+            'id' => $this->getId(),
+            'placa' => $this->getPlaca(),
+            'renavam' => $this->getRenavam(),
+            'modelo' => $this->getModelo(),
+            'marca' => $this->getMarca(),
+            'ano' => $this->getAno(),
+            'cor' => $this->getCor(),
+        ];
     }
 
     /**
@@ -198,31 +197,6 @@ class Vehicle
     public function setCor($cor)
     {
         $this->cor = $cor;
-    }
-
-    public function __construct(array $data = [])
-    {
-        if (!empty($data)) {
-//            $this->exchangeArray($data);
-            (new ClassMethods(false))->hydrate($data, $this);
-        }
-    }
-
-    /**
-     * Returns array of this vehicle.
-     * @return array
-     */
-    public function getArrayCopy()
-    {
-        return [
-            'id' => $this->getId(),
-            'placa' => $this->getPlaca(),
-            'renavam' => $this->getRenavam(),
-            'modelo' => $this->getModelo(),
-            'marca' => $this->getMarca(),
-            'ano' => $this->getAno(),
-            'cor' => $this->getCor(),
-        ];
     }
 
     /**

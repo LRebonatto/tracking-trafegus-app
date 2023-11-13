@@ -11,55 +11,67 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="m-0">Editar Veículo</h2>
-                    <a href="<?= $this->url('vehicles', ['action' => 'delete']); ?>"
-                       class="btn btn-danger">
-                        Excluir Veículo <i class="fa fa-trash"></i>
-                    </a>
+                    <div>
+                        <a href="<?= $this->url('vehicles', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>"
+                           class="btn btn-warning">
+                            Editar Veículo <i class="fa fa-pencil"></i>
+                        </a>
+                        <a href="<?= $this->url('vehicles', ['action' => 'delete']); ?>"
+                           class="btn btn-danger">
+                            Excluir Veículo <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <form action="<?= $this->url('vehicles', ['action' => 'view', 'id' => $vehicle->getId()]) ?>" method="post">
+                    <form>
                         <div class="form-group row">
                             <div class="col-auto py-2">
                                 <label for="placa">Placa:</label>
-                                <input type="text" class="form-control" id="placa" name="placa"
+                                <input disabled type="text" class="form-control" id="placa" name="placa"
                                        value="<?= $vehicle->getPlaca() ?>"
                                        required
                                        maxlength="7">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="renavam">Renavam:</label>
-                                <input type="text" class="form-control" id="renavam" name="renavam"
+                                <input disabled type="text" class="form-control" id="renavam" name="renavam"
                                        value="<?= $vehicle->getRenavam() ?>"
                                        maxlength="30">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="modelo">Modelo:</label>
-                                <input type="text" class="form-control" id="modelo" name="modelo"
+                                <input disabled type="text" class="form-control" id="modelo" name="modelo"
                                        value="<?= $vehicle->getModelo() ?>"
                                        required maxlength="20">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="marca">Marca:</label>
-                                <input type="text" class="form-control" id="marca" name="marca"
+                                <input disabled type="text" class="form-control" id="marca" name="marca"
                                        value="<?= $vehicle->getMarca() ?>" required
                                        maxlength="20">
                             </div>
                             <div class="col-auto py-2">
                                 <label for="ano">Ano:</label>
-                                <input type="number" class="form-control" id="ano" name="ano"
+                                <input disabled type="number" class="form-control" id="ano" name="ano"
                                        value="<?= $vehicle->getAno() ?>" required>
                             </div>
                             <div class="col-auto py-2">
                                 <label for="cor">Cor:</label>
-                                <input type="text" class="form-control" id="cor" name="cor"
+                                <input disabled type="text" class="form-control" id="cor" name="cor"
                                        value="<?= $vehicle->getCor() ?>" required
                                        maxlength="20">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success" id="saveRegister">Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php
+$flashMessenger = $this->flashMessenger();
+if ($flashMessenger->hasSuccessMessages()) {
+    $successMessage = $flashMessenger->getSuccessMessages()[0];
+    echo '<div class="alert alert-success">' . $this->escapeHtml($successMessage) . '</div>';
+}
+?>

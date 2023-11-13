@@ -5,7 +5,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h2 class="card-title m-0">Lista de Veículos</h2>
                     <a href="<?= $this->url('vehicles', ['action' => 'add']); ?>"
-                       class="btn btn-primary btn">
+                       class="btn btn-primary">
                         Novo Veículo <i class="fa fa-plus"></i>
                     </a>
                 </div>
@@ -14,19 +14,24 @@
                         <thead>
                         <tr>
                             <th>Placa</th>
+                            <th>Renavam</th>
                             <th>Modelo</th>
                             <th>Marca</th>
+                            <th>Ano</th>
+                            <th>Cor</th>
                             <th>Ações</th>
-                            <!-- Outros campos -->
                         </tr>
                         </thead>
                         <tbody>
-                        <!--         Loop para exibir os veículos -->
+                        <!-- Loop para exibir os veículos -->
                         <?php foreach ($this->vehicles as $vehicle) : ?>
                             <tr>
                                 <td><?= $vehicle->getPlaca(); ?></td>
+                                <td><?= $vehicle->getRenavam(); ?></td>
                                 <td><?= $vehicle->getModelo(); ?></td>
                                 <td><?= $vehicle->getMarca(); ?></td>
+                                <td><?= $vehicle->getAno(); ?></td>
+                                <td><?= $vehicle->getCor(); ?></td>
                                 <td>
                                     <a href="<?= $this->url('vehicles', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>"
                                        class="btn btn-sm btn-warning">Editar</a>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vehicle;
+namespace Motorist;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -10,16 +10,16 @@ use Zend\View\Helper\FlashMessenger;
 return [
     'router' => [
         'routes' => [
-            'vehicles' => [
+            'motorists' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/vehicles[/:action[/:id]]',
+                    'route' => '/motorists[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
                     ],
                     'defaults' => [
-                        'controller' => Controller\VehicleController::class,
+                        'controller' => Controller\MotoristController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -28,15 +28,15 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\VehicleController::class => function ($container) {
+            Controller\MotoristController::class => function ($container) {
                 $entityManager = $container->get(EntityManager::class);
-                return new Controller\VehicleController($entityManager);
+                return new Controller\MotoristController($entityManager);
             },
         ],
     ],
     'view_manager' => [
         'template_path_stack' => [
-            'vehicle' => __DIR__ . '/../view',
+            'motorist' => __DIR__ . '/../view',
         ],
     ],
     'controller_plugins' => [
