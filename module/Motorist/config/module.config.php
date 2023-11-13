@@ -38,9 +38,7 @@ return [
     ],
     'controller_plugins' => [
         'factories' => [
-            'flashMessenger' => function ($container) {
-                return new FlashMessenger();
-            },
+            'flashMessenger' => Controller\Factory\FlashMessengerFactory::class,
         ],
     ],
     'doctrine' => [
